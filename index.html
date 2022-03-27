@@ -4,17 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather Dashboard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
 
-    <!--weather api goes here-->
-  <section class="weather-app">
-    <div class="title">
-        <p>Current Weather</p>
-    </div>
+    <section class="weather-search">
+        <h2>Search for a City</h2>
+        <input type="text" id="search-input">
+        <button id="city-submit">Search</button>
+
+    </section>
+
     
+  <section class="weather-app">
     <div>
+        <div class="city">
+            <p></p>
+        </div>
+        <div class="date">
+             <p></p>
+        </div>
         <div class="image is-96x96">
             <img src="">
         </div>
@@ -24,12 +38,24 @@
         <div class="desc">
             <p></p>
         </div>
-        <div class="city">
+        <div class="wind">
+            <p></p>
+        </div>
+        <div class="humidity">
+            <p></p>
+        </div>
+        <div class="uv">
             <p></p>
         </div>
     </div>
   </section>
-  <!--end weather api-->
-    
+
+  <section class="five-day-forecast">
+
+  </section>
+
+
+  
+  <script src=".\script.js"></script>
 </body>
 </html>
