@@ -1,3 +1,6 @@
+var currentWeather = document.querySelector("current-weather");
+var location = document.querySelector("loc")
+
 var city = document.getElementById("#city");
 var date = document.getElementById("#date");
 var icon = document.getElementById("#image");
@@ -7,13 +10,13 @@ var wind = document.getElementById("#wind");
 var humidity = document.getElementById("#humidity");
 var uv = document.getElementById("#uv");
 
-var dt = $("#currentDay").text(moment().format("MMMM Do YYYY, h:mm:ss a"));
+var dt = (moment().format("MMMM Do YYYY"));
 
 var btn = document.getElementById("#btn");
 var cityInput = document.getElementById("#search");
 
 
-var key = "7f9364bc4336da280bffe6dfb0be17b2";
+var key = "34942108e12e5ea45cbb0f0e600464a6";
 cityArr = []
 
 
@@ -25,15 +28,15 @@ function searchCity(event) {
     
     console.log(selectedCity);
 
-    if (!selectedCity) {
-      alert("You need to enter a city");
-      return false;
-    } else {
-        cityArray.push(selectedCity);
-        localStorage.setItem(selectedCity, JSON.stringify(cityArr));
+    // if (!selectedCity) {
+    //   alert("You need to enter a city");
+    //   return false;
+    // } else {
+    //     cityArr.push(selectedCity);
+    //     localStorage.setItem(selectedCity, JSON.stringify(cityArr));
      
       
-    }
+    // }
   
     getWeather(selectedCity);
   };
@@ -49,12 +52,13 @@ function searchCity(event) {
             return data;
         })
         .then(function(data){
-            var iconId = data.weather[0].icon;
-            city.innerHTML = data.name + ", " + data.sys.country;
-            icon.innerHTML = `<img src="https://openweathermap.org/img/wn/${iconId}@4x.png"/>`;
-            desc.innerHTML = data.weather[0].description;
+            // var iconId = data.weather[0].icon;
+            // city.innerHTML = ;
+            // icon.innerHTML = ``;
+            // desc.innerHTML = ;
             var lat = data.coord.lat;
             var lon = data.coord.lon;
+            location.innerHTML = `<h2 id="#city">${data.name} + ", " + ${data.sys.country}</h2>`;
         let apiTwo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${key}`;
         fetch(apiTwo)
         .then(function(response){
@@ -63,11 +67,24 @@ function searchCity(event) {
             return data;
         })
         .then(function(data){
-           date.innerHTML = dt
-           temp.innerHTML = data.current.temp;
-           wind.innerHTML = data.current.wind_speed;
-           humidity.innerHTML = data.current.humidity;
-           uv.innerHTML = data.uvi;
+        //    date.innerHTML = dt
+        //    temp.innerHTML = ;
+        //    wind.innerHTML = 
+        //    humidity.innerHTML = ;
+        //    uv.innerHTML = ;
+
+
+        
+            currentWeather.innerHTML =
+           `
+            
+            <p id="#desc">${data.weather[0].description}</p>
+            <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png"/>
+            <p id="#temp">Temperature: ${data.current.temp}</p>
+            <p id="#wind">Wind Speed: ${data.current.wind_speed}</p>
+            <p id="#humidity">Humidity: ${data.current.humidity}</p>
+            <p id="#uv">UV Index: ${data.current.uvi}</p>`;
+
         })
         // .then(function(){
         //     displayWeather();

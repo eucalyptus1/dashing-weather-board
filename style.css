@@ -19,3 +19,15 @@
     flex-wrap: wrap;
 }
 
+.favourable {
+    color: cyan;
+}
+
+.moderate {
+    color:chartreuse
+}
+
+.severe {
+    color:crimson
+}
+
