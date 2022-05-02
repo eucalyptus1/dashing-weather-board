@@ -9,7 +9,7 @@ Previously entered cities and be viewed by clicking the stored links below the f
 
 ## Built with
 * HTML
-* ~~CSS~~
+* CSS
 * JavaScript
 * Weather app API was provided by https://openweathermap.org/
 

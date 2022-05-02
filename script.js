@@ -1,19 +1,21 @@
-var currentWeather = document.querySelector("current-weather");
-var location = document.querySelector("loc")
 
-var city = document.getElementById("#city");
-var date = document.getElementById("#date");
-var icon = document.getElementById("#image");
-var temp = document.getElementById("#temp");
-var desc = document.getElementById("#desc");
-var wind = document.getElementById("#wind");
-var humidity = document.getElementById("#humidity");
-var uv = document.getElementById("#uv");
 
-var dt = (moment().format("MMMM Do YYYY"));
+
+// var city = document.getElementById("#city");
+// var date = document.getElementById("#date");
+// var icon = document.getElementById("#image");
+// var temp = document.getElementById("#temp");
+// var desc = document.getElementById("#desc");
+// var wind = document.getElementById("#wind");
+// var humidity = document.getElementById("#humidity");
+// var uv = document.getElementById("#uv");
+
+
 
 var btn = document.getElementById("#btn");
 var cityInput = document.getElementById("#search");
+
+var cityTitle = document.querySelector("city-title");
 
 
 var key = "34942108e12e5ea45cbb0f0e600464a6";
@@ -73,28 +75,28 @@ function searchCity(event) {
         //    humidity.innerHTML = ;
         //    uv.innerHTML = ;
 
-
         
-            currentWeather.innerHTML =
-           `
-            
-            <p id="#desc">${data.weather[0].description}</p>
-            <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png"/>
+            currentWeather  = 
+            `<div>
+            <p id="#desc">${data.current.weather[0].description}</p>
+            <img src="https://openweathermap.org/img/wn/${data.current.weather[0].icon}@4x.png"/>
             <p id="#temp">Temperature: ${data.current.temp}</p>
             <p id="#wind">Wind Speed: ${data.current.wind_speed}</p>
             <p id="#humidity">Humidity: ${data.current.humidity}</p>
-            <p id="#uv">UV Index: ${data.current.uvi}</p>`;
+            <p id="#uv">UV Index: ${data.current.uvi}</p>
+            </div>`;
+            document.getElementById('current-weather').innerHTML = currentWeather;
 
-        })
+        });
         // .then(function(){
         //     displayWeather();
         // });
 
         // function fiveDay(lat, lon){
-        })
+        });
 
         
-    }
+    };
 
 // display function
 // function displayWeather(){
