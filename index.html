@@ -13,49 +13,41 @@
         <h1>Weather Dashboard</h1>
     </header>
 
-    <section class="weather-search">
+    <section class="search-container">
         <h2>Search for a City</h2>
-        <input type="text" id="search-input">
-        <button id="city-submit">Search</button>
-
+        <form>
+        <input type="text" id="#search">
+        <button id="#btn">Search</button>
+      </form>
+      <div id="#history">
+      </div>
     </section>
 
     
-  <section class="weather-app">
-    <div>
-        <div class="city">
-            <p></p>
-        </div>
-        <div class="date">
-             <p></p>
-        </div>
-        <div class="image is-96x96">
-            <img src="">
-        </div>
-        <div class="temp">
-            <p>°<span>C</span></p>
-        </div>
-        <div class="desc">
-            <p></p>
-        </div>
-        <div class="wind">
-            <p></p>
-        </div>
-        <div class="humidity">
-            <p></p>
-        </div>
-        <div class="uv">
-            <p></p>
-        </div>
-    </div>
+  <section class="current-weather">
+            <h2 id="#city"></h2>
+            <p id="#date"></p>
+            <p id="#desc"></p>
+            <div id="#image"></div>
+            <p id="#temp">Temperature:</p>
+            <p id="#wind">Wind Speed:</p>
+            <p id="#humidity">Humidity:</p>
+            <p id="#uv">UV Index</p>
   </section>
 
-  <section class="five-day-forecast">
-
+  <section class="five-day" id="#five-day-forecast">
+        <h3 class="date"></h3>
+        <img class="icon"/>
+        <p class="temp">°<span>C</span></p>
+        <p class="humidity"></p>
+        <p class="wind"></p>
   </section>
 
 
   
-  <script src=".\script.js"></script>
+  
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
