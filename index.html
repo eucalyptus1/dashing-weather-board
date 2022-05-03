@@ -5,48 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Weather Dashboard</title>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <header>
         <h1>Weather Dashboard</h1>
     </header>
-
+     <div class="main">
     <section class="search-container">
         <h2>Search for a City</h2>
         <form>
         <input type="text" id="#search">
         <button id="#btn">Search</button>
       </form>
-      <div id="#history">
+       <div id="#history">
       </div>
     </section>
+  
 
     
-  <section id="current-weather">
-    <h2 class="city-title"></h2>
-   
-            <!-- <h2 id="#city"></h2>
-            <p id="#date"></p>
-            <p id="#desc"></p>
-            <div id="#image"></div>
-            <p id="#temp">Temperature:</p>
-            <p id="#wind">Wind Speed:</p>
-            <p id="#humidity">Humidity:</p>
-            <p id="#uv">UV Index</p> -->
-  
-  </section>
+  <section class="current-div" id="current-weather">
 
-  <section class="five-day" id="#five-day-forecast">
-        <h3 class="date"></h3>
-        <img class="icon"/>
-        <p class="temp">°<span>C</span></p>
-        <p class="humidity"></p>
-        <p class="wind"></p>
   </section>
+</div>
+
+  <div class="five-divs" id="five-day">
+        
+  </div>
 
   <script src="./script.js"></script>
 </body>

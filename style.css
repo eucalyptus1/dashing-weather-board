@@ -1,22 +1,28 @@
-
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
 
 .search-container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    margin-right: auto;
 }
 
 .current-weather {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     flex-wrap: wrap;
+    margin-left: auto;
 }
 
-.five-day {
+.five-divs {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .favourable {

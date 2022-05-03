@@ -1,28 +1,12 @@
-
-
-
-// var city = document.getElementById("#city");
-// var date = document.getElementById("#date");
-// var icon = document.getElementById("#image");
-// var temp = document.getElementById("#temp");
-// var desc = document.getElementById("#desc");
-// var wind = document.getElementById("#wind");
-// var humidity = document.getElementById("#humidity");
-// var uv = document.getElementById("#uv");
-
-
-
 var btn = document.getElementById("#btn");
 var cityInput = document.getElementById("#search");
-
-var cityTitle = document.querySelector("city-title");
-
 
 var key = "34942108e12e5ea45cbb0f0e600464a6";
 cityArr = []
 
 
 
+var dt = moment().format("MM/DD/YYYY")
 
 function searchCity(event) {
     event.preventDefault();
@@ -54,46 +38,56 @@ function searchCity(event) {
             return data;
         })
         .then(function(data){
-            // var iconId = data.weather[0].icon;
-            // city.innerHTML = ;
-            // icon.innerHTML = ``;
-            // desc.innerHTML = ;
             var lat = data.coord.lat;
             var lon = data.coord.lon;
-            location.innerHTML = `<h2 id="#city">${data.name} + ", " + ${data.sys.country}</h2>`;
+            cityTitle = data.name;
+            country = data.sys.country;
+
         let apiTwo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${key}`;
         fetch(apiTwo)
         .then(function(response){
-            let data = response.json();
-            console.log(data);
-            return data;
+            let data2 = response.json();
+            console.log(data2);
+            return data2;
         })
-        .then(function(data){
-        //    date.innerHTML = dt
-        //    temp.innerHTML = ;
-        //    wind.innerHTML = 
-        //    humidity.innerHTML = ;
-        //    uv.innerHTML = ;
-
-        
+        .then(function(data2){
             currentWeather  = 
             `<div>
-            <p id="#desc">${data.current.weather[0].description}</p>
-            <img src="https://openweathermap.org/img/wn/${data.current.weather[0].icon}@4x.png"/>
-            <p id="#temp">Temperature: ${data.current.temp}</p>
-            <p id="#wind">Wind Speed: ${data.current.wind_speed}</p>
-            <p id="#humidity">Humidity: ${data.current.humidity}</p>
-            <p id="#uv">UV Index: ${data.current.uvi}</p>
+            <p>${dt}</p>
+            <h2>${cityTitle}, ${country}</h2>
+            <p>${data2.current.weather[0].description}</p>
+            <img src="https://openweathermap.org/img/wn/${data2.current.weather[0].icon}@4x.png"/>
+            <p>Temperature: ${data2.current.temp}°C</p>
+            <p>Wind Speed: ${data2.current.wind_speed} mph</p>
+            <p>Humidity: ${data2.current.humidity}</p>
+            <p id="#uv">UV Index: ${data2.current.uvi}</p>
             </div>`;
             document.getElementById('current-weather').innerHTML = currentWeather;
+        })
+        let apiThree = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${key}`;
+        fetch(apiThree)
+        .then(function(response){
+            let data3 = response.json();
+            console.log(data3);
+            return data3;
+        })
+        .then(function(data3){
+            for (var i = 0; i < 5; i++) {
+            var fiveDay = document.getElementById('five-day');
+            var five = document.createElement('div');
+            five.innerHTML = 
+            `<div>
+            <h3 class="date"></h3>
+            <img src="https://openweathermap.org/img/wn/${data3.daily[i].weather[0].icon}@2x.png"/>
+            <p>Temperature: ${data3.daily[i].temp.max}°C</p>
+            <p>Humidity: ${data3.daily[i].humidity}</p>
+            <p>Wind Speed: ${data3.daily[i].wind_speed} mph</p>
+            </div>`;
+            fiveDay.appendChild(five);
+            };
 
         });
-        // .then(function(){
-        //     displayWeather();
-        // });
-
-        // function fiveDay(lat, lon){
-        });
+    })
 
         
     };
