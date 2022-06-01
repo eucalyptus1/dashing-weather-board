@@ -6,7 +6,7 @@ cityArr = []
 
 
 
-var dt = moment().format("MM/DD/YYYY")
+var currentDate = moment().format("MM/DD/YYYY")
 
 function searchCity(event) {
     event.preventDefault();
@@ -53,7 +53,7 @@ function searchCity(event) {
         .then(function(data2){
             currentWeather  = 
             `<div>
-            <p>${dt}</p>
+            <p>${currentDate}</p>
             <h2>${cityTitle}, ${country}</h2>
             <p>${data2.current.weather[0].description}</p>
             <img src="https://openweathermap.org/img/wn/${data2.current.weather[0].icon}@4x.png"/>
@@ -72,12 +72,15 @@ function searchCity(event) {
             return data3;
         })
         .then(function(data3){
+            document.getElementById('five-day').innerHTML = ""
+            
             for (var i = 0; i < 5; i++) {
+            var weekDates = moment().add(i, "d").format("M/D/YYYY");
             var fiveDay = document.getElementById('five-day');
             var five = document.createElement('div');
             five.innerHTML = 
             `<div>
-            <h3 class="date"></h3>
+            <h3 class="date">${weekDates}</h3>
             <img src="https://openweathermap.org/img/wn/${data3.daily[i].weather[0].icon}@2x.png"/>
             <p>Temperature: ${data3.daily[i].temp.max}°C</p>
             <p>Humidity: ${data3.daily[i].humidity}</p>
