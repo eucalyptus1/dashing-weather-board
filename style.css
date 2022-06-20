@@ -26,14 +26,14 @@
 }
 
 .favourable {
-    color: cyan;
+    background-color: cyan;
 }
 
 .moderate {
-    color:chartreuse
+    background-color:chartreuse;
 }
 
 .severe {
-    color:crimson
+    background-color:crimson;
 }
 

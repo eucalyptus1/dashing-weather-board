@@ -1,34 +1,43 @@
 var btn = document.getElementById("#btn");
 var cityInput = document.getElementById("#search");
+var historyList = document.getElementById("#history");
+var clear = document.getElementById("#clear");
 
 var key = "34942108e12e5ea45cbb0f0e600464a6";
 cityArr = []
-
-
 
 var currentDate = moment().format("MM/DD/YYYY")
 
 function searchCity(event) {
     event.preventDefault();
     var selectedCity = cityInput.value;
-    
-    console.log(selectedCity);
 
-    // if (!selectedCity) {
-    //   alert("You need to enter a city");
-    //   return false;
-    // } else {
-    //     cityArr.push(selectedCity);
-    //     localStorage.setItem(selectedCity, JSON.stringify(cityArr));
-     
-      
-    // }
+    var cityStore = JSON.stringify(selectedCity);
+        localStorage.setItem("cityArr", cityStore);
+
+    if (!selectedCity) {
+      alert("You need to enter a city");
+      return false;
+    } else {
+       var historyItem = document.createElement("li");
+       var cityBtn = document.createElement("button");
+       cityBtn.innerHTML = selectedCity;
+       historyItem.appendChild(cityBtn);
+       historyList.appendChild(historyItem);
+        cityBtn.addEventListener("click", function() {
+            getWeather(selectedCity);
+        })
+    }
   
     getWeather(selectedCity);
   };
 
-//call for openweather api
+  
+    clear.addEventListener("click", function() {
+    historyList.innerHTML = "";
+    });
 
+//call for openweather api
     function getWeather(selectedCity){   
         let api = `https://api.openweathermap.org/data/2.5/weather?q=${selectedCity}&units=imperial&appid=${key}`;
         fetch(api)
@@ -37,13 +46,15 @@ function searchCity(event) {
             console.log(data);
             return data;
         })
+        // Get latitude and longitude for onecall API
         .then(function(data){
             var lat = data.coord.lat;
             var lon = data.coord.lon;
             cityTitle = data.name;
             country = data.sys.country;
+            temp = Math.round(data.main.temp)
 
-        let apiTwo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${key}`;
+        let apiTwo = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`;
         fetch(apiTwo)
         .then(function(response){
             let data2 = response.json();
@@ -51,20 +62,31 @@ function searchCity(event) {
             return data2;
         })
         .then(function(data2){
+
+            var uv = data2.current.uvi;
+                
+            if (uv <= 2) {
+                uv.className = "favourable";
+            } else if (uv >= 3 && uv <= 7) {
+                uv.className = "moderate";
+            } else {
+                uv.className = "severe";
+            };
+
             currentWeather  = 
             `<div>
             <p>${currentDate}</p>
             <h2>${cityTitle}, ${country}</h2>
             <p>${data2.current.weather[0].description}</p>
             <img src="https://openweathermap.org/img/wn/${data2.current.weather[0].icon}@4x.png"/>
-            <p>Temperature: ${data2.current.temp}°C</p>
+            <p>Temperature: ${temp}°C</p>
             <p>Wind Speed: ${data2.current.wind_speed} mph</p>
             <p>Humidity: ${data2.current.humidity}</p>
-            <p id="#uv">UV Index: ${data2.current.uvi}</p>
+            <p id="#uv">UV Index: ${uv}</p>
             </div>`;
             document.getElementById('current-weather').innerHTML = currentWeather;
         })
-        let apiThree = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${key}`;
+        let apiThree = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${key}`;
         fetch(apiThree)
         .then(function(response){
             let data3 = response.json();
@@ -91,22 +113,7 @@ function searchCity(event) {
 
         });
     })
-
-        
-    };
-
-// display function
-// function displayWeather(){
-//     locationElement.innerHTML = `${weather.city},${weather.country}`;
-//     dateElement.innerHTML = `${weather.date}`;
-//     iconElement.innerHTML = `<img src="https://openweathermap.org/img/wn/${weather.iconId}@4x.png"/>`;
-//     tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`;
-//     descElement.innerHTML = `${weather.description}`;
-//     windElement.innerHTML = `${weather.wind}`;
-//     humElement.innerHTML = `${weather.humidity}`;
-//     uvElement.innerHTML = `${weather.uv}`;
-//     }
-
+};
 
 
 
